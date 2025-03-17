@@ -3,6 +3,7 @@ import { Cart, LineItem, Order } from '../models';
 import { CartStore } from '../cart.store';
 import { take } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-confirm-checkout',
@@ -14,6 +15,7 @@ export class ConfirmCheckoutComponent implements OnInit {
 
   private cartStore = inject(CartStore);
   private fb = inject(FormBuilder);
+  private productService = inject(ProductService);
   
   // observable for line items
   cart$ = this.cartStore.lineItems$;
@@ -62,6 +64,7 @@ export class ConfirmCheckoutComponent implements OnInit {
     // const values = this.form.value; 
     const values: Order = this.form.value
     console.log(">>>Form values:", values);
+    this.productService.checkout(values);
   }
 
 }
