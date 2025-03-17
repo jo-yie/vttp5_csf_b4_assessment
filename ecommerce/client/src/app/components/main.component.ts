@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories$ = this.prodSvc.getProductCategories()
+
   }
 
   viewCatetory(category: string) {
