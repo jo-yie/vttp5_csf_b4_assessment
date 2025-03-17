@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, take} from 'rxjs';
 import {Router} from '@angular/router';
 import { CartStore } from './cart.store';
 
@@ -15,9 +15,13 @@ export class AppComponent implements OnInit {
   private router = inject(Router)
   private cartStore = inject(CartStore)
 
-  itemCount: Observable<number> = this.cartStore.itemCount$;
+  // itemCount: Observable<number> = this.cartStore.itemCount$;
+  itemCount!: number;
 
   ngOnInit(): void {
+    this.cartStore.itemCount$.subscribe((data) => {
+      this.itemCount = data;
+    })
   }
 
   checkout(): void {

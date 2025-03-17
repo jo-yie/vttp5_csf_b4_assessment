@@ -6,6 +6,7 @@ import { Injectable } from "@angular/core"
 import { ComponentStore } from "@ngrx/component-store"
 import { Cart, LineItem } from "./models";
 
+@Injectable()
 export class CartStore extends ComponentStore<Cart> {
 
     constructor() {
