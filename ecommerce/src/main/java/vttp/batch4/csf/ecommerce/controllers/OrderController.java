@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 import vttp.batch4.csf.ecommerce.models.Order;
 import vttp.batch4.csf.ecommerce.services.PurchaseOrderService;
 
@@ -27,7 +29,14 @@ public class OrderController {
     // TODO Task 3
     System.out.println("called POST /api/order");
     System.out.println(">>>NAME:" + order.getName());
+    System.out.println(">>>ID: " + order.getOrderId());
+    System.out.println(">>>CART: " + order.getCart());
+    
+    // json string response 
+    JsonObject jo = Json.createObjectBuilder()
+      .add("Success", order.getOrderId() + " added")
+      .build();
 
-	  return ResponseEntity.ok().body(order.getName() + " received");
+	  return ResponseEntity.ok().body(jo.toString());
   }
 }
