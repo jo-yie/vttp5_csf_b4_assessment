@@ -87,29 +87,6 @@ public class Utils {
 
 }
 
-
-//   // json string to Order POJO 
-//   private Order jsonToOrderPojo(String jsonString) {
-
-//     StringReader sr = new StringReader(jsonString); 
-//     JsonReader jr = Json.createReader(sr);
-//     JsonObject jo = jr.readObject();
-
-//     // map JSON fields to Order POJO 
-
-//     Cart cart = new Cart(); 
-    
-
-//     Order order = new Order(); 
-//     order.setName(jo.getString("name"));
-//     order.setAddress(jo.getString("address"));
-//     order.setPriority(jo.getBoolean("priority"));
-//     order.setComments(jo.getString("comments"));
-//     order.setCart(null);
-//     return null;
-//   }
-// }
-
 // {
 //   "name":"sadds",
 //   "address":"adsasdasd",
@@ -119,21 +96,3 @@ public class Utils {
 //     [{"prodId":"67d7c0e103d9b8a4583f59ed","quantity":1,"name":"Deodorant Body Spray - Be Delicious Woman EDT","price":5550},{"prodId":"67d7c0e103d9b8a4583f59ed","quantity":1,"name":"Deodorant Body Spray - Be Delicious Woman EDT","price":5550},{"prodId":"67d7c0e103d9b8a4583f59ed","quantity":1,"name":"Deodorant Body Spray - Be Delicious Woman EDT","price":5550}]
 //   }
 // }
-
-  //   // helper method to parse JSON string into a BoardGame POJO 
-  //   private BoardGame jsonStringToBoardGame(String jString) {
-
-  //     StringReader sr = new StringReader(jString);
-  //     JsonReader jr = Json.createReader(sr);
-  //     JsonObject jo = jr.readObject();
-
-  //     // map JSON fields to a BoardGame POJO 
-
-  //     BoardGame boardGame = new BoardGame(
-  //         jo.getInt("gid"),
-  //         jo.getString("name"),
-  //         jo.getInt("year"));
-
-  //     return boardGame;
-
-  // }

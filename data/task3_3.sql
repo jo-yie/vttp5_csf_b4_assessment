@@ -22,36 +22,13 @@ CREATE TABLE orders (
 
 -- create line items 
 CREATE TABLE line_items (
-    product_id VARCHAR
-)
-
---   private final String orderId;
---   private Date date = new Date();
---   private String name;
---   private String address;
---   private boolean priority;
---   private String comments;
---   private Cart cart = new Cart();
-
--- cart
---   private List<LineItem> lineItems = new LinkedList<>();
-
--- line item
---   private String productId;
---   private String name;
---   private int quantity;
---   private float price;
-
--- create table reservations
-CREATE TABLE reservations (
-    resv_id VARCHAR(8),
+    product_id VARCHAR(24), -- primary key
     name VARCHAR(128), 
-    email VARCHAR(128), 
-    acc_id VARCHAR(10), -- foreign key 
-    arrival_date DATE, 
-    duration INT, 
-    CONSTRAINT pk_resv_id PRIMARY KEY (resv_id),
-    CONSTRAINT fk_acc_id 
-        FOREIGN KEY (acc_id)
-        REFERENCES acc_occupancy(acc_id)
+    quantity INT, 
+    price DECIMAL, 
+    order_id VARCHAR(26), -- foreign key
+    CONSTRAINT pk_product_id PRIMARY KEY (product_id),
+    CONSTRAINT fk_order_id 
+        FOREIGN KEY (order_id)
+        REFERENCES orders(order_id)
 );
