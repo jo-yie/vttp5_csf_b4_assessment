@@ -29,12 +29,14 @@ export class ProductService {
   checkout(order: Order) {
     // TODO Task 3
 
-    return this.http.post<Order>('/api/order', order).subscribe({
-      next: (response) => 
-        console.log(">>>Response:", response),
-      error: (err) =>
-        console.error(">>>Error:", err)
-    })
+    // return this.http.post<Order>('/api/order', order).subscribe({
+    //   next: (response) => 
+    //     console.log(">>>Response:", response),
+    //   error: (err) =>
+    //     console.error(">>>Error:", err)
+    // })
+
+    return this.http.post<Order>('/api/order', order);
 
 
   }

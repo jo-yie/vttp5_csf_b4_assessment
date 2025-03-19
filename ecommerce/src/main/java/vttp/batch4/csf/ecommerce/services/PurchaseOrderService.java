@@ -17,7 +17,16 @@ public class PurchaseOrderService {
   // not be marked
   // You may only add Exception to the method's signature
   public void createNewPurchaseOrder(Order order) {
-    // TODO Task 3
+    // TODO Task 3 
+    // try catch block
+    // throw exception
+    try {
+      poRepo.create(order);
+
+    } catch (Exception e) {
+      throw new RuntimeException("Insert into MySQL failed");
+
+    }
     
   }
 }

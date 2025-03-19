@@ -22,12 +22,13 @@ CREATE TABLE orders (
 
 -- create line items 
 CREATE TABLE line_items (
-    product_id VARCHAR(24), -- primary key
+    id INT auto_increment, -- primary key
+    product_id VARCHAR(24),
     name VARCHAR(128), 
     quantity INT, 
     price DECIMAL, 
     order_id VARCHAR(26), -- foreign key
-    CONSTRAINT pk_product_id PRIMARY KEY (product_id),
+    CONSTRAINT pk_id PRIMARY KEY (id),
     CONSTRAINT fk_order_id 
         FOREIGN KEY (order_id)
         REFERENCES orders(order_id)

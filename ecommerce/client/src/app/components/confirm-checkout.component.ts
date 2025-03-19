@@ -1,9 +1,10 @@
-import { Component, inject, Inject, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Cart, LineItem, Order } from '../models';
 import { CartStore } from '../cart.store';
 import { take } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirm-checkout',
@@ -16,6 +17,7 @@ export class ConfirmCheckoutComponent implements OnInit {
   private cartStore = inject(CartStore);
   private fb = inject(FormBuilder);
   private productService = inject(ProductService);
+  private router = inject(Router);
   
   // observable for line items
   cart$ = this.cartStore.lineItems$;
@@ -64,7 +66,19 @@ export class ConfirmCheckoutComponent implements OnInit {
     // const values = this.form.value; 
     const values: Order = this.form.value
     console.log(">>>Form values:", values);
-    this.productService.checkout(values);
+
+    this.productService.checkout(values).subscribe({
+      next: (response) => {
+        console.log(">>>Response: ", response)
+        alert(JSON.stringify(response))
+        this.router.navigate(['/']);
+      }, 
+      error: (err) => {
+        console.log(">>>Error: ", err)
+        alert(JSON.stringify(err.error))
+      }
+    })
+
   }
 
 }

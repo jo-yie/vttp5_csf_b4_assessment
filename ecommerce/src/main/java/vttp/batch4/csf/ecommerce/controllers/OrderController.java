@@ -31,25 +31,34 @@ public class OrderController {
   @ResponseBody
   public ResponseEntity<String> postOrder(@RequestBody String jsonString) {
 
-    // TODO Task 3
-    // System.out.println("called POST /api/order");
-    // System.out.println(">>>NAME:" + order.getName());
-    // System.out.println(">>>ID: " + order.getOrderId());
-    // System.out.println(">>>CART: " + order.getCart());
-    
     System.out.println(jsonString.toString());
 
     // call utils
     Order order = Utils.jsonToOrderPojo(jsonString);
 
+    // check order is formatted correctly
     System.out.println(">>>Order: " + order);
 
-    // json string response 
-    JsonObject jo = Json.createObjectBuilder()
-      .add("Success", "Order: " + order.getOrderId())
-      .build();
+    try {
+      poSvc.createNewPurchaseOrder(order);
 
-	  return ResponseEntity.ok().body(jo.toString());
+      // json string response
+      JsonObject jo = Json.createObjectBuilder()
+        .add("orderId", order.getOrderId())
+        .build();
+
+  return ResponseEntity.status(200).body(jo.toString());
+
+    } catch (Exception e) {
+      JsonObject errorMessage = Json.createObjectBuilder()
+        .add("message", e.getMessage())
+        .build();
+
+      return ResponseEntity.status(400)
+        .body(errorMessage.toString());
+
+    }
+
   }
 
 }
